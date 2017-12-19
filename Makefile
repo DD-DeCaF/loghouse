@@ -1,6 +1,6 @@
 OWNER:=dddecaf
 
-ALL_STACKS:=logstash kibana elasticsearch
+ALL_STACKS:=logstash
 
 ALL_IMAGES:=$(ALL_STACKS)
 
