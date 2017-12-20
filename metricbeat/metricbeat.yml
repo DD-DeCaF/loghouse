@@ -10,12 +10,6 @@ metricbeat.modules:
   period: 10s
   processes: ['.*']
 
-# In order to capture short lived connections, use a shorter period for system/sockets.
-- module: system
-  metricsets: [socket]
-  period: 500ms
-  socket.reverse_lookup.enabled: true
-
 - module: system
   period: 60s
   metricsets: [filesystem, fsstat]
