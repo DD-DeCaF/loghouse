@@ -48,3 +48,21 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
     command: syslog://logstash:6666
+  metricbeat:
+    build: metricbeat/
+    depends_on:
+      - elasticsearch
+    volumes:
+      - './elasticsearch/config:/etc/elasticsearch:ro'
+      - '/proc:/hostfs/proc:ro'
+      - '/sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro'
+      - '/:/hostfs:ro'
+    environment:
+      - ELASTICSEARCH_HOST=elasticsearch
+      - ELASTICSEARCH_PORT=9200
+      - ELASTICSEARCH_USER=elastic
+      - ELASTICSEARCH_PWD=changeme
+      - KIBANA_HOST=kibana
+      - KIBANA_PORT=5601
+      - KIBANA_PWD=changeme
+    command: metricbeat -e -system.hostfs=/hostfs

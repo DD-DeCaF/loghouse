@@ -1,6 +1,6 @@
 OWNER:=dddecaf
 
-ALL_STACKS:=logstash
+ALL_STACKS:=logstash metricbeat
 
 ALL_IMAGES:=$(ALL_STACKS)
 
