@@ -7,13 +7,26 @@ services:
       - "9300:9300"
     volumes:
       - ./elasticsearch/data:/usr/share/elasticsearch/data
+      - ./elasticsearch/config:/usr/share/elasticsearch/config
+    environment:
+      - NODE_NAME=elasticsearch
   logstash:
     build: logstash/
-    command: -f /etc/logstash/conf.d/
+    depends_on:
+      - elasticsearch
     ports:
-      - "5000:5000"
+      - '6666:5000/udp'
+      - '5001:5001'
+      - '5044'
+    volumes:
+      - './elasticsearch/config:/etc/elasticsearch:ro'
     environment:
-      - ELASTIC_PASSWORD
+      - ELASTICSEARCH_HOST=elasticsearch
+      - ELASTICSEARCH_PORT=9200
+      - ELASTICSEARCH_USER=elastic
+      - LOGSTASH_PWD=changeme
+      - TS_PWD=changeme
+    command: logstash -f /etc/logstash/conf.d/
   kibana:
     build: kibana/
     ports:
