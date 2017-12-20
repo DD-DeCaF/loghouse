@@ -20,8 +20,6 @@ Dockerized ELK stack + Logspout, configured for Docker Cloud
 
     docker-compose up
 
-Note that on the very first startup, it takes some seconds to generate certificates and services depending on these may exit prematurely. Simply restart these services after all certificates are properly generated.
-
 To view the kibana dashboard, visit http://localhost:5601/ in your browser or run:
 
     http get https://localhost:9200/ --auth elastic:changeme --verify no

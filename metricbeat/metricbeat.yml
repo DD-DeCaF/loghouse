@@ -19,13 +19,8 @@ metricbeat.modules:
 processors:
 - add_cloud_metadata:
 
-output.elasticsearch:
-  hosts: ["https://${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}"]
-  username: "${ELASTICSEARCH_USER}"
-  password: "${ELASTICSEARCH_PWD}"
-  ssl.certificate_authorities: ["/etc/elasticsearch/searchguard/ssl/beats.all.pem"]
-  ssl.certificate: "/etc/elasticsearch/searchguard/ssl/beats-signed.pem"
-  ssl.key: "/etc/elasticsearch/searchguard/ssl/beats.key.pem"
+output.logstash:
+  hosts: ["${LOGSTASH_HOST}:${LOGSTASH_PORT}"]
 
 setup.kibana:
   host: "${KIBANA_HOST}:${KIBANA_PORT}"

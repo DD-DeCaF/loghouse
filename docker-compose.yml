@@ -17,7 +17,7 @@ services:
     ports:
       - '6666:5000/udp'
       - '5001:5001'
-      - '5044'
+      - '5044:5044'
     volumes:
       - './elasticsearch/config:/etc/elasticsearch:ro'
     environment:
@@ -53,15 +53,12 @@ services:
     depends_on:
       - elasticsearch
     volumes:
-      - './elasticsearch/config:/etc/elasticsearch:ro'
       - '/proc:/hostfs/proc:ro'
       - '/sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro'
       - '/:/hostfs:ro'
     environment:
-      - ELASTICSEARCH_HOST=elasticsearch
-      - ELASTICSEARCH_PORT=9200
-      - ELASTICSEARCH_USER=elastic
-      - ELASTICSEARCH_PWD=changeme
+      - LOGSTASH_HOST=logstash
+      - LOGSTASH_PORT=5044
       - KIBANA_HOST=kibana
       - KIBANA_PORT=5601
       - KIBANA_PWD=changeme
