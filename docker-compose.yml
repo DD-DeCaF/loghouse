@@ -28,10 +28,16 @@ services:
       - TS_PWD=changeme
     command: logstash -f /etc/logstash/conf.d/
   kibana:
-    build: kibana/
+    image: 'khezen/kibana:5'
+    depends_on:
+      - elasticsearch
     ports:
-      - "5601:5601"
+      - '5601:5601'
+    volumes:
+      - './elasticsearch/config:/etc/elasticsearch:ro'
     environment:
+      - ELASTICSEARCH_HOST=elasticsearch
+      - ELASTICSEARCH_PORT=9200
       - LOGSPOUT=ignore
   logspout:
     image: gliderlabs/logspout:master
