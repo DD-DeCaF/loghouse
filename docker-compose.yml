@@ -15,7 +15,7 @@ services:
     depends_on:
       - elasticsearch
     ports:
-      - '6666:5000/udp'
+      - '5000:5000/udp'
       - '5001:5001'
       - '5044:5044'
     volumes:
@@ -47,7 +47,7 @@ services:
       - 8100:8000
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
-    command: syslog://logstash:6666
+    command: syslog://logstash:5000
   metricbeat:
     build: metricbeat/
     depends_on:
