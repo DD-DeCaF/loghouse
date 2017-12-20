@@ -41,8 +41,10 @@ services:
       - LOGSPOUT=ignore
   logspout:
     image: gliderlabs/logspout:master
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock
+    depends_on:
+      - logstash
     ports:
       - 8100:8000
-    command: syslog://app.dd-decaf.eu:6666
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+    command: syslog://logstash:6666
