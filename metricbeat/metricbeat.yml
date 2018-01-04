@@ -6,11 +6,11 @@ metricbeat.modules:
     - memory
     - process
   enabled: true
-  period: 10s
+  period: 180s
   processes: ['.*']
 
 - module: system
-  period: 60s
+  period: 600s
   metricsets: [filesystem, fsstat]
   filesystem.ignore_types: [overlay, tmpfs, devtmpfs, aufs]
   filters:
