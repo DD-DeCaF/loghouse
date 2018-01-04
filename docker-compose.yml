@@ -51,7 +51,7 @@ services:
   metricbeat:
     build: metricbeat/
     depends_on:
-      - elasticsearch
+      - logstash
     volumes:
       - '/proc:/hostfs/proc:ro'
       - '/sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro'
