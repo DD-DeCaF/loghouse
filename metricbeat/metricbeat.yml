@@ -4,7 +4,6 @@ metricbeat.modules:
     - cpu
     - load
     - memory
-    - network
     - process
   enabled: true
   period: 10s
